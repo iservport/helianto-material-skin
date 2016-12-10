@@ -1,0 +1,8 @@
+<md-toolbar class="md-primary md-hue-1" layout="row">
+    <md-button class="menu" data-ng-click="toggleMenu()" hide-gt-sm >
+        <md-icon md-svg-icon="menu"> </md-icon>
+    </md-button>
+    <div flex="none" class="user-menu">
+        <span class="avatar-text">{{$view.me.displayName}}</span><img class="avatar" src="{{$view.me.imageUrl}}" />
+    </div>
+</md-toolbar>
