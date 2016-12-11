@@ -1,8 +1,10 @@
-<md-toolbar class="md-primary md-hue-1" layout="row">
-    <md-button class="menu" data-ng-click="toggleMenu()" hide-gt-sm >
+<md-toolbar class="md-primary md-hue-1 md-toolbar-tools" layout="row">
+    <md-button class="menu" ng-click="$view.toggleMenu()" hide-gt-sm aria-label="${top_title_aria_label!'Helianto'}">
         <md-icon md-svg-icon="menu"> </md-icon>
     </md-button>
+    <img hide-xs data-ng-src="{{entity.externalLogoUrl}}" class="png-toolbar-icon" alt="{{entity.alias}}" />
+    <span flex></span>
     <div flex="none" class="user-menu">
-        <span class="avatar-text">{{$view.me.displayName}}</span><img class="avatar" src="{{$view.me.imageUrl}}" />
+        <span class="avatar-text">${top_title_greeting!'Hello, '}{{me.displayName}}</span><img class="avatar" src="{{me.imageUrl}}" />
     </div>
 </md-toolbar>

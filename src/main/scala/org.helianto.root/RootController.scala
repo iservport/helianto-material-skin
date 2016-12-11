@@ -22,8 +22,12 @@ class RootController(restTemplate: OAuth2RestOperations) {
 
   @ModelAttribute("title") def getTitle = title
 
-  @GetMapping def index = "frame-angular"
+  @GetMapping def index = "frame-angular-material"
 
-  @GetMapping(Array("/me")) @ResponseBody def mex = restTemplate.getForObject(s"$apiUrl/api/me", classOf[String])
+  @GetMapping(Array("/error")) def error = "frame-error"
+
+  @GetMapping(Array("/me")) @ResponseBody def me = restTemplate.getForObject(s"$apiUrl/api/me", classOf[String])
+
+  @GetMapping(Array("/entity")) @ResponseBody def entity = restTemplate.getForObject(s"$apiUrl/api/entity", classOf[String])
 
 }

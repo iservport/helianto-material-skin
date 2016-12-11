@@ -7,7 +7,7 @@
 
 <head>
 
-    [#include "/frame-head.ftl" /]
+    [#include "/frame-head.html" /]
 
 </head>
 <body id="app" 
@@ -16,19 +16,19 @@
 
     [#include "lang.ftl" /]
 
-	[#include "/frame-top.html" /]
-	
-	<div class="main-container">
+    <section data-layout-fill layout="column">
 
-		[#include "/_menu.html" /]
+        [#include "/frame-top.html" /]
 
-	    <div id="content">
+        <div data-flex data-layout="row" style="height: inherit;" >
 
-            <section class="container" >[#include "/${baseName}.html" /]</section>
+            [#include "/frame-sidebar.html" /]
+
+            [#include "/${baseName}.html" /]
 
         </div>
 
-	</div><!--main-container-->
+	</section>
 
 	[#include "/frame-js.html" /]
 	[#include "/frame-custom.html" /]

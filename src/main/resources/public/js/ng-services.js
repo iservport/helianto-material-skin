@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('app', ['ngResource','ui.bootstrap'])
+    angular.module('app', ['ngResource','ngMaterial'])
     .controller('ViewController', ViewController);
 
     ViewController.$inject = ['$rootScope', '$http'];
@@ -13,6 +13,11 @@
         $rootScope.selected = 0;
 
         $rootScope._csrf = "";
+
+        $http.get("entity")
+            .success(function(data) {
+                $rootScope.entity = data;
+            })
 
         $http.get("me")
             .success(function(data) {
