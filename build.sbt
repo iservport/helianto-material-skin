@@ -3,7 +3,7 @@ import sbt.{Credentials, Path}
 
 organization := "org.helianto"
 
-version := "1.0.0.RELEASE"
+version := "1.0.1.RELEASE"
 
 sbtVersion := "0.13.9"
 
@@ -16,10 +16,10 @@ lazy val root = (project in file("."))
     name := "helianto-material-skin",
     libraryDependencies ++= Seq(
       "org.projectlombok"                  % "lombok"                         % "1.16.8",
-      "org.springframework.boot"           % "spring-boot-starter-web"        % "1.4.0.RELEASE",
-      "org.springframework.boot"           % "spring-boot-starter-data-jpa"   % "1.4.0.RELEASE",
-      "org.springframework.boot"           % "spring-boot-starter-security"   % "1.4.0.RELEASE",
-      "org.springframework.boot"           % "spring-boot-starter-freemarker" % "1.4.0.RELEASE",
+      "org.springframework.boot"           % "spring-boot-starter-web"        % "1.4.1.RELEASE",
+      "org.springframework.boot"           % "spring-boot-starter-data-jpa"   % "1.4.1.RELEASE",
+      "org.springframework.boot"           % "spring-boot-starter-security"   % "1.4.1.RELEASE",
+      "org.springframework.boot"           % "spring-boot-starter-freemarker" % "1.4.1.RELEASE",
       "org.springframework.security.oauth" % "spring-security-oauth2"         % "2.0.11.RELEASE",
       "org.springframework.security"       % "spring-security-jwt"            % "1.0.5.RELEASE",
       "com.zaxxer"                         % "HikariCP"             % "2.4.3",

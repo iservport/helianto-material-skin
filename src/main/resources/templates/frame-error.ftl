@@ -2,7 +2,7 @@
 <html >
 <head>
     <title>${titlePage!'Approval'}</title>
-    [#include "/frame-head.ftl" /]
+    [#include "/frame-head.html" /]
     <style>${inLineCss!''}</style>
     [#if captchaKey?? ][/#if]
 </head>
