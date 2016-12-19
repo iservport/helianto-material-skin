@@ -3,7 +3,7 @@ package org.helianto.root
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.oauth2.client.OAuth2RestOperations
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.{GetMapping, ModelAttribute, RequestMapping, ResponseBody}
+import org.springframework.web.bind.annotation._
 
 @Controller
 @RequestMapping(Array("/"))
@@ -24,10 +24,12 @@ class RootController(restTemplate: OAuth2RestOperations) {
 
   @GetMapping def index = "frame-angular-material"
 
+  @GetMapping(Array("templates/{view}")) def get(@PathVariable view:String) = view
+
   @GetMapping(Array("/error")) def error = "frame-error"
 
-  @GetMapping(Array("/me")) @ResponseBody def me = restTemplate.getForObject(s"$apiUrl/api/me", classOf[String])
+  @GetMapping(Array("/app/me")) @ResponseBody def me = restTemplate.getForObject(s"$apiUrl/api/me", classOf[String])
 
-  @GetMapping(Array("/entity")) @ResponseBody def entity = restTemplate.getForObject(s"$apiUrl/api/entity", classOf[String])
+  @GetMapping(Array("/app/entity")) @ResponseBody def entity = restTemplate.getForObject(s"$apiUrl/api/entity", classOf[String])
 
 }

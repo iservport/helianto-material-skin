@@ -4,24 +4,26 @@
     angular.module('app', ['ngResource','ngMaterial'])
     .controller('ViewController', ViewController);
 
-    ViewController.$inject = ['$rootScope', '$http'];
+    ViewController.$inject = ['$rootScope', '$http', '$log'];
 
-    function ViewController($rootScope, $http) {
+    function ViewController($rootScope, $http, $log) {
 
-        var vm = this;
+        var view = this;
 
-        $rootScope.selected = 0;
+        $log.info("View Controller is active.");
 
-        $rootScope._csrf = "";
+        view.selected = 0;
 
-        $http.get("entity")
-            .success(function(data) {
-                $rootScope.entity = data;
+        view._csrf = "";
+
+        $http.get("app/entity")
+            .then(function(response) {
+                view.entity = response.data;
             })
 
-        $http.get("me")
-            .success(function(data) {
-                $rootScope.me = data;
+        $http.get("app/me")
+            .then(function(response) {
+                view.me = response.data;
             })
 
     }

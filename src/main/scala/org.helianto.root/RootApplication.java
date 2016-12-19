@@ -1,11 +1,11 @@
 package org.helianto.root;
 
-import org.helianto.root.RootController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
@@ -38,7 +38,7 @@ public abstract class RootApplication extends WebMvcConfigurerAdapter {
             http
                     .requestMatchers().antMatchers("/api/**")
                     .and().servletApi()
-                    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().authorizeRequests().anyRequest().access("#oauth2.hasScope('write')")
                     .and().csrf().disable()
                     ;

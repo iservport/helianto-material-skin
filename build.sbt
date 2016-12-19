@@ -3,7 +3,7 @@ import sbt.{Credentials, Path}
 
 organization := "org.helianto"
 
-version := "1.0.1.RELEASE"
+version := "1.1.7.RELEASE"
 
 sbtVersion := "0.13.9"
 
@@ -22,6 +22,7 @@ lazy val root = (project in file("."))
       "org.springframework.boot"           % "spring-boot-starter-freemarker" % "1.4.1.RELEASE",
       "org.springframework.security.oauth" % "spring-security-oauth2"         % "2.0.11.RELEASE",
       "org.springframework.security"       % "spring-security-jwt"            % "1.0.5.RELEASE",
+      "org.springframework"                % "spring-orm"                     % "4.3.3.RELEASE", // fixme
       "com.zaxxer"                         % "HikariCP"             % "2.4.3",
       "com.h2database"                     % "h2"                   % "1.4.192",
       "mysql"                              % "mysql-connector-java" % "5.1.26",
@@ -34,6 +35,24 @@ lazy val root = (project in file("."))
       "org.slf4j"                          % "slf4j-simple"         % "1.7.14"
     )
   )
+
+libraryDependencies ++= Seq(
+  "org.webjars.bower" % "angular"              % "1.6.0",
+  "org.webjars.bower" % "angular-sanitize"     % "1.6.0",
+  "org.webjars.bower" % "angular-resource"     % "1.6.0",
+  "org.webjars.bower" % "angular-animate"      % "1.6.0",
+  "org.webjars.bower" % "angular-aria"         % "1.6.0",
+  "org.webjars.bower" % "angular-i18n"         % "1.6.0",
+  "org.webjars.bower" % "angular-material"     % "1.1.1",
+  "org.webjars.bower" % "angular-loading-bar"  % "0.9.0",
+  "org.webjars.bower" % "slimScroll"           % "1.3.3"  exclude("org.webjars.bower", "jquery"),
+  "org.webjars.bower" % "bootstrap"            % "3.3.7"  exclude("org.webjars.bower", "jquery"),
+  "org.webjars.bower" % "jquery"               % "2.2.4",
+  "org.webjars.bower" % "fontawesome"          % "4.6.3",
+  "org.webjars.bower" % "wowjs" % "1.1.2",
+  "org.webjars.bower" % "tether" % "1.3.7",
+  "org.webjars.bower" % "smooth-scroller" % "0.1.2"
+)
 
 lazy val commonSettings = Seq(
   resolvers  ++= Seq(

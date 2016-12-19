@@ -12,7 +12,7 @@
 </head>
 <body id="app" 
 	data-ng-controller="${baseName?capitalize}Controller as $${baseName}"
-	data-ng-init="$root._csrf='${_csrf.token}'" layout-fill class="heigth-fix">
+	[#if _csrf?? ]data-ng-init="$${baseName}._csrf='${_csrf.token}'"[/#if] layout-fill class="heigth-fix">
 
     [#include "lang.ftl" /]
 
