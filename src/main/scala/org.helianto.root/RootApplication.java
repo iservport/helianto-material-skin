@@ -1,12 +1,11 @@
 package org.helianto.root;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -23,11 +22,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableOAuth2Sso
 @EnableResourceServer
+@EnableWebSecurity
 public abstract class RootApplication extends WebMvcConfigurerAdapter {
-
-    public static void main(String[] args) {
-        SpringApplication.run(RootApplication.class, args);
-    }
 
     @Configuration
     static class ResourceServer extends ResourceServerConfigurerAdapter {
@@ -47,13 +43,28 @@ public abstract class RootApplication extends WebMvcConfigurerAdapter {
 
     }
 
+    @Configuration
+    public class RootWebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+        public void configure(HttpSecurity http) throws Exception {
+            http.antMatcher("/").authorizeRequests().anyRequest().permitAll();
+        }
+
+    }
+
     @Bean
     public OAuth2RestTemplate oauth2RestTemplate(OAuth2ClientContext oauth2ClientContext, OAuth2ProtectedResourceDetails details) {
         return new OAuth2RestTemplate(details, oauth2ClientContext);
     }
 
     @Bean
-    public RootController rootController(OAuth2RestOperations restTemplate) { return new RootController(restTemplate); }
+    public HomeController homeController() { return new HomeController(); }
+
+    @Bean
+    public AppController appController(OAuth2RestOperations restTemplate) { return new AppController(restTemplate); }
+
+    @Bean
+    public TemplatesController templatesController() { return new TemplatesController(); }
 
     @Bean
     public Docket rootApi() {

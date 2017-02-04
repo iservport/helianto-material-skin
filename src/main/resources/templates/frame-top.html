@@ -2,10 +2,10 @@
     <md-button class="menu" ng-click="$view.toggleMenu()" hide-gt-sm aria-label="${top_title_aria_label!'Helianto'}">
         <md-icon md-svg-icon="menu"> </md-icon>
     </md-button>
-    <img hide-xs data-ng-src="{{$view.entity.externalLogoUrl}}" class="png-toolbar-icon" alt="{{$view.entity.alias}}" />
+    <img hide-xs src="${baseLogo!'images/logo.png'}" class="png-toolbar-icon" alt="logo" />
     <span flex></span>
     <div flex="none" class="user-menu">
-        <span class="avatar-text">${top_title_greeting!'Hello, '}{{$view.me.displayName}}</span>
-        <img class="avatar" data-ng-src="{{$view.me.imageUrl}}" />
+        <span class="avatar-text">${top_title_greeting!'Hello, '}{{me.displayName}}</span>
+        <img class="avatar" data-ng-src="{{me.imageUrl}}" />
     </div>
 </md-toolbar>

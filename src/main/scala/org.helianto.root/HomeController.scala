@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation._
 
 @Controller
-@RequestMapping(Array("/"))
-class RootController(restTemplate: OAuth2RestOperations) {
+@RequestMapping(Array("/home"))
+class HomeController {
 
   @GetMapping(value = Array("favicon.ico"))
   def favicon():String  = "forward:/images/favicon.png"
@@ -16,20 +16,14 @@ class RootController(restTemplate: OAuth2RestOperations) {
 
   @Value("${helianto.base-name}") val baseName = ""
 
-  @Value("${helianto.api.url}") val apiUrl = ""
+  @Value("${helianto.base-logo}") val baseLogo = ""
 
   @ModelAttribute("baseName") def getBaseName = baseName
+
+  @ModelAttribute("baseLogo") def getBaseLogo = baseLogo
 
   @ModelAttribute("title") def getTitle = title
 
   @GetMapping def index = "frame-angular-material"
-
-  @GetMapping(Array("templates/{view}")) def get(@PathVariable view:String) = view
-
-  @GetMapping(Array("/error")) def error = "frame-error"
-
-  @GetMapping(Array("/app/me")) @ResponseBody def me = restTemplate.getForObject(s"$apiUrl/api/me", classOf[String])
-
-  @GetMapping(Array("/app/entity")) @ResponseBody def entity = restTemplate.getForObject(s"$apiUrl/api/entity", classOf[String])
 
 }

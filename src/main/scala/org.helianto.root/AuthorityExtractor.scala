@@ -7,6 +7,8 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication
   */
 trait AuthorityExtractor {
 
+  def _contextName(implicit principal: OAuth2Authentication) = id(principal, "CONTEXT_")
+
   def _entityId(implicit principal: OAuth2Authentication) = id(principal, "ENTITY_ID_")
 
   def _userId(implicit principal: OAuth2Authentication) = id(principal, "USER_ID_")
