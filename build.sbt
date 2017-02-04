@@ -3,7 +3,7 @@ import sbt.{Credentials, Path}
 
 organization := "org.helianto"
 
-version := "1.3.0.RELEASE"
+version := "1.3.4.RELEASE"
 
 sbtVersion := "0.13.9"
 
@@ -45,6 +45,7 @@ libraryDependencies ++= Seq(
   "org.webjars.bower" % "angular-i18n"         % "1.6.1",
   "org.webjars.bower" % "angular-material"     % "1.1.1",
   "org.webjars.bower" % "angular-loading-bar"  % "0.9.0",
+  "org.webjars.bower" % "angular-moment"       % "1.0.1",
   "org.webjars.bower" % "slimScroll"           % "1.3.3"  exclude("org.webjars.bower", "jquery"),
   "org.webjars.bower" % "bootstrap"            % "3.3.7"  exclude("org.webjars.bower", "jquery"),
   "org.webjars.bower" % "jquery"               % "2.2.4",
