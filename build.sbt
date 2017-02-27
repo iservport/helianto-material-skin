@@ -3,7 +3,7 @@ import sbt.{Credentials, Path}
 
 organization := "org.helianto"
 
-version := "1.3.5.RELEASE"
+version := "1.4.1.RELEASE"
 
 sbtVersion := "0.13.9"
 
@@ -37,12 +37,12 @@ lazy val root = (project in file("."))
   )
 
 libraryDependencies ++= Seq(
-  "org.webjars.bower" % "angular"              % "1.6.1",
-  "org.webjars.bower" % "angular-sanitize"     % "1.6.1",
-  "org.webjars.bower" % "angular-resource"     % "1.6.1",
-  "org.webjars.bower" % "angular-animate"      % "1.6.1",
-  "org.webjars.bower" % "angular-aria"         % "1.6.1",
-  "org.webjars.bower" % "angular-i18n"         % "1.6.1",
+  "org.webjars.bower" % "angular"              % "1.6.2",
+  "org.webjars.bower" % "angular-sanitize"     % "1.6.2",
+  "org.webjars.bower" % "angular-resource"     % "1.6.2",
+  "org.webjars.bower" % "angular-animate"      % "1.6.2",
+  "org.webjars.bower" % "angular-aria"         % "1.6.2",
+  "org.webjars.bower" % "angular-i18n"         % "1.6.2",
   "org.webjars.bower" % "angular-material"     % "1.1.1",
   "org.webjars.bower" % "angular-loading-bar"  % "0.9.0",
   "org.webjars.bower" % "angular-moment"       % "1.0.1",
