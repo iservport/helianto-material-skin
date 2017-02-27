@@ -3,7 +3,7 @@ import sbt.{Credentials, Path}
 
 organization := "org.helianto"
 
-version := "1.4.3.RELEASE"
+version := "1.4.4.RELEASE"
 
 sbtVersion := "0.13.9"
 
