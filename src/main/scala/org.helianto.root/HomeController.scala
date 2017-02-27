@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation._
 @RequestMapping(Array("/home"))
 class HomeController {
 
-  @GetMapping(value = Array("favicon.ico"))
-  def favicon():String  = "forward:/images/favicon.png"
+  @Value("${server.context-path}") val contextPath = ""
 
   @Value("${helianto.title}") val title = ""
 
@@ -18,11 +17,16 @@ class HomeController {
 
   @Value("${helianto.base-logo}") val baseLogo = ""
 
+  @ModelAttribute("contextPath") def getContextPath = contextPath
+
   @ModelAttribute("baseName") def getBaseName = baseName
 
   @ModelAttribute("baseLogo") def getBaseLogo = baseLogo
 
   @ModelAttribute("title") def getTitle = title
+
+  @GetMapping(value = Array("favicon.ico"))
+  def favicon():String  = "forward:/images/favicon.png"
 
   @GetMapping def index = "frame-angular-material"
 

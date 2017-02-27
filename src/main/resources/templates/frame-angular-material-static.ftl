@@ -1,25 +1,21 @@
 [#ftl]
 <!DOCTYPE html >
-<html id="ng-app" xmlns:ng="http://angularjs.org" ng-app="app" ng-controller="ViewController as $view" ng-cloak >
+<html id="ng-app" xmlns:ng="http://angularjs.org" ng-app="app" ng-cloak >
 <head>
 
-    [#include "/frame-head.html" /]
+[#include "/frame-head.html" /]
 
 </head>
-<body id="app" ng-controller="${baseName?capitalize}Controller as $${baseName}"
+<body id="app"
 	[#if _csrf?? ]data-ng-init="$view.csrf('${_csrf.token}')"[/#if] layout-fill class="heigth-fix">
 
     [#include "lang.ftl" /]
 
     <section data-layout-fill layout="column">
 
-        [#include "/frame-top.html" /]
-
         <div data-flex data-layout="row" style="height: inherit;" >
 
-            [#include "/frame-sidebar.html" /]
-
-            [#include "/${baseName}.html" /]
+            [#include "/${pageName!baseName}.html" /]
 
         </div>
 

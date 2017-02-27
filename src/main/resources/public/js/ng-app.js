@@ -1,6 +1,6 @@
 (function () {
     'use strict';
 
-    angular.module('app', ['ngResource','ngMaterial'])
+    angular.module('app', ['ngResource','ngMaterial','angularMoment'])
 
 } ());

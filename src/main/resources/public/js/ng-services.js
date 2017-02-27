@@ -26,15 +26,17 @@
                 .then(function(response) {}).catch(function(e) { $log.error("logout FAILED"); })
         }
 
-        $http.get("app/entity")
-            .then(function(response) {
-                $rootScope.entity = response.data;
-            }).catch(function(e) { $log.error("app/entity FAILED"); })
-
-        $http.get("app/me")
-            .then(function(response) {
-                $rootScope.me = response.data;
-            }).catch(function(e) { $log.error("app/me FAILED"); })
+        $rootScope.$watch('selected', function(newValue){
+            $log.info("Selected: "+newValue);
+            $http.get("app/me")
+                .then(function(response) {
+                    $rootScope.me = response.data;
+                    $http.get("app/entity")
+                        .then(function(response) {
+                            $rootScope.entity = response.data;
+                        }).catch(function(e) { $log.error("app/entity FAILED"); })
+                }).catch(function(e) { $log.error("app/me FAILED"); })
+        });
 
     }
 

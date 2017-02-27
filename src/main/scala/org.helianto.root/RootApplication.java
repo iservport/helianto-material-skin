@@ -1,5 +1,6 @@
 package org.helianto.root;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,9 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.web.context.SecurityContextPersistenceFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -28,6 +31,12 @@ public abstract class RootApplication extends WebMvcConfigurerAdapter {
     @Configuration
     static class ResourceServer extends ResourceServerConfigurerAdapter {
 
+        @Autowired
+        private OAuth2ClientContextFilter oauth2ClientContextFilter;
+
+        @Autowired(required = false)
+        private HeliantoResourceServerConfigurer heliantoResourceServerConfigurer;
+
         @Override
         public void configure(HttpSecurity http) throws Exception {
             // @formatter:off
@@ -36,9 +45,14 @@ public abstract class RootApplication extends WebMvcConfigurerAdapter {
                     .and().servletApi()
 //                    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and().authorizeRequests().anyRequest().access("#oauth2.hasScope('write')")
-                    .and().csrf().disable()
+                    .and()
+                    .addFilterAfter(oauth2ClientContextFilter, SecurityContextPersistenceFilter.class)
+                    .csrf().disable()
                     ;
             // @formatter:on
+            if (heliantoResourceServerConfigurer!=null) {
+                heliantoResourceServerConfigurer.configure(http);
+            }
         }
 
     }
@@ -47,7 +61,13 @@ public abstract class RootApplication extends WebMvcConfigurerAdapter {
     public class RootWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         public void configure(HttpSecurity http) throws Exception {
-            http.antMatcher("/").authorizeRequests().anyRequest().permitAll();
+            http.antMatcher("/").authorizeRequests().anyRequest().permitAll()
+                .and().logout()
+                    .deleteCookies("JSESSIONID")
+                    .deleteCookies("remember-me")
+                    .deleteCookies("X-XSRF-TOKEN")
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login");
         }
 
     }
